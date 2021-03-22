@@ -17,9 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/afegirOng', function () {
+    return view('afegirOng');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
+
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');
 Route::get('mostraong','ongctl@index');

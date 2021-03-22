@@ -1,7 +1,5 @@
 use mysql;
 
-CREATE user 'admin'@'localhost' IDENTIFIED BY "admin";
-
 CREATE DATABASE ccong;
 USE ccong;
 
