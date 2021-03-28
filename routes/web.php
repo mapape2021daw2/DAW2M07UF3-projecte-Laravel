@@ -21,10 +21,19 @@ Route::get('/afegirOng', function () {
     return view('afegirOng');
 });
 
+Route::get('/listUsers', function () {
+    return view('listUsers');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
+Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');
+Route::get('/listUsers', [App\Http\Controllers\Users::class, 'index'])->name('listUsers');
+Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('addUsers');
+Route::get('/modifyUsers', [App\Http\Controllers\Users::class, 'renderModify'])->name('modifyUsers');
+Route::get('/deleteUsers', [App\Http\Controllers\Users::class, 'renderDelete'])->name('deleteUsers');
 
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');
