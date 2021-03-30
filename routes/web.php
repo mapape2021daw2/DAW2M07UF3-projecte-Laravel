@@ -25,6 +25,15 @@ Route::get('/listUsers', function () {
     return view('listUsers');
 });
 
+Route::get('/deleteUsers', function () {
+    return view('deleteUsers');
+});
+
+Route::get('deleteUsers/deleteUser/{id}', function () {
+    return view('deleteUsers');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -34,10 +43,12 @@ Route::get('/listUsers', [App\Http\Controllers\Users::class, 'index'])->name('li
 Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('addUsers');
 Route::get('/modifyUsers', [App\Http\Controllers\Users::class, 'renderModify'])->name('modifyUsers');
 Route::get('/deleteUsers', [App\Http\Controllers\Users::class, 'renderDelete'])->name('deleteUsers');
+Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserData'])->name('modifyUserData');
 
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');
 Route::get('mostraong','ongctl@index');
-
 Route::get('esborra-ong','ongctl@index');
 Route::get('esbong/{cif}','ongctl@destroy');
+Route::post('modifyUserData','Users@modifyUserData');
+Route::get('deleteUsers/deleteUser/{id}','Users@destroy');

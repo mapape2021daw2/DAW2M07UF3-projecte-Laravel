@@ -42,7 +42,7 @@ class ongctl extends Controller
         $this->validate($request, [
             'cif'       =>  'required',
             'adreca'   =>  'required',
-            'poblacio'   =>  'required', 
+            'poblacio'   =>  'required',
             'comarca'   =>  'required',
             'tipus'   =>  'required',
             //declarada???

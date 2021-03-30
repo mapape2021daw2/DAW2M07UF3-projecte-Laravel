@@ -6,5 +6,20 @@
             <p>{{\Session::get('Exit')}}</p>
         </div>
     @endif
-    <h1>MODIFY USERS</h1>
+    <div class="container col-5">
+        <div class="content">
+            <form action="/modifyUserData" method="post" class="form-group">
+                @csrf
+                <label for="">Email</label>
+                <input class="form-control" type="text" placeholder="Introdueix el teu email" name="email">
+                <label for="">Nom</label>
+                <input class="form-control" type="text" placeholder="Nom" name="name">
+                <label for="">Contrasenya nova</label>
+                <input class="form-control" type="text" placeholder="Contrasenya nova" name="newPassword">
+                <label for="">Repeteix la contrasenya nova</label>
+                <input class="form-control" type="text" placeholder="Contrasenya nova" name="newPasswordRepeat">
+                <input type="submit" class="btn btn-success mt-4 col-2" value="Enviar">
+            </form>
+        </div>
+    </div>
 @endsection

@@ -75,32 +75,27 @@ class Users extends Controller
     public function renderModify() {
         return view('ong.users.modifyUsers');
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function modifyUserData()
     {
-        //
+        $email = $_POST["email"];
+        $name = $_POST["name"];
+        $newPassword = $_POST["newPassword"];
+        $newPasswordRepeat = $_POST["newPasswordRepeat"];
+
+        $formEmail = DB::select('select email from users where email = ?', [$email]);
+        $userEmail = (string)$formEmail[0]->email;
+
+        if($userEmail === $email) {
+            DB::update('update users set name = ? where email = ?', [$name, $email]);
+            return redirect('/listUsers');
+        }
     }
 
     public function renderDelete()
     {
-        return view('ong.users.deleteUsers');
+        $users = DB::select('select * from users');
+        return view('ong.users.deleteUsers', ['users'=>$users]);
     }
 
     /**
@@ -109,9 +104,9 @@ class Users extends Controller
      * @param  int  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy($email)
+    public function destroy($id)
     {
-        DB::select('delete from users where email = ?', [$email]);
-        echo "Usuari esborrat";
+        DB::select('delete from users where id = ?', [$id]);
+        return redirect('/deleteUsers');
     }
 }
