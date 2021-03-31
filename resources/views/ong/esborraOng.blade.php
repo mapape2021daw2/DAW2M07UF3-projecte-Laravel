@@ -11,7 +11,6 @@
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">CIF</th>
                     <th scope="col">Adreça</th>
                     <th scope="col">Població</th>
@@ -22,16 +21,15 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($associacions ?? '' as $associacio) 
+            @foreach ($ongs as $ong) 
                 <tr>
-                    <td>{{ $associacio->id }}</td>
-                    <td>{{ $associacio->cif }}</td>
-                    <td>{{ $associacio->adreca }}</td>
-                    <td>{{ $associacio->poblacio }}</td>   
-                    <td>{{ $associacio->comarca }}</td> 
-                    <td>{{ $associacio->tipus }}</td>  
+                    <td>{{ $ong->cif }}</td>
+                    <td>{{ $ong->adreca }}</td>
+                    <td>{{ $ong->poblacio }}</td>   
+                    <td>{{ $ong->comarca }}</td> 
+                    <td>{{ $ong->tipus }}</td>  
                     <td>
-                        <form action="esborraassociacio/esbassociacio/{{$associacio->id}}" method="get">
+                        <form action="esborraOng/esbOng/{{$ong->cif}}" method="get">
                             <button class="btn btn-danger" type="submit">Esborra</button>
                         </form>
                     </td>          

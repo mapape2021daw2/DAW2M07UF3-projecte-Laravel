@@ -55,7 +55,17 @@ Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('
 Route::get('/modificaOng', [App\Http\Controllers\ongctl::class, 'renderModify'])->name('modificaOng');
 Route::get('/esborraOng', [App\Http\Controllers\ongctl::class, 'renderDelete'])->name('esborraOng');
 Route::get('/modifyOngData', [App\Http\Controllers\ongctl::class, 'modifyOngData'])->name('modifyOngData');
-Route::post('modifyOngData','ongctl@modifyUserData');
+Route::post('modifyOngData','ongctl@modifyOngData');
+Route::get('esborraOng/esbOng/{id}','ongctl@destroy');
+
+/*SOCIS*/
+Route::get('/sociCrudOptions', [App\Http\Controllers\ongctl::class, 'crudOptions'])->name('ongCrudOptions');
+Route::get('/mostraOng', [App\Http\Controllers\ongctl::class, 'index'])->name('mostraOng');
+Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
+Route::get('/modificaOng', [App\Http\Controllers\ongctl::class, 'renderModify'])->name('modificaOng');
+Route::get('/esborraOng', [App\Http\Controllers\ongctl::class, 'renderDelete'])->name('esborraOng');
+Route::get('/modifyOngData', [App\Http\Controllers\ongctl::class, 'modifyOngData'])->name('modifyOngData');
+Route::post('modifyOngData','ongctl@modifyOngData');
 Route::get('esborraOng/esbOng/{id}','ongctl@destroy');
 
 /*USUARIS*/

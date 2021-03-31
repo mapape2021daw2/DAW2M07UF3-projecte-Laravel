@@ -94,8 +94,8 @@ class ongctl extends Controller
 
     public function renderDelete()
     {
-        $associacions = DB::select('select * from associacio');
-        return view('ong.esborraOng', ['associacions'=>$associacions]);
+        $ongs = DB::select('select * from associacio');
+        return view('ong.esborraOng', ['ongs'=>$ongs]);
     }
 
     /**
@@ -104,9 +104,9 @@ class ongctl extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cif)
     {
-        DB::select('delete from associacio where id = ?', [$id]);
+        DB::select('delete from associacio where cif = ?', [$cif]);
         return redirect('/esborraOng');
     }
 }
