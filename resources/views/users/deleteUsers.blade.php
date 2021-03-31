@@ -8,6 +8,7 @@
     @endif
     <div class="container">
         <div class="content">
+            <h2 style="text-align: center">ESBORRAR USUARI</h2>
             <table class="table">
                 <thead class="thead-dark">
                 <tr>

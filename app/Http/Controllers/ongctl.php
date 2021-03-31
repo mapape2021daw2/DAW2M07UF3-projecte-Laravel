@@ -32,12 +32,25 @@ class ongctl extends Controller
         return view('ong.afegirOng');
     }
 
+    public function afegirOng() {
+        $cif = $_POST["cif"];
+        $adreca = $_POST["adreca"];
+        $poblacio = $_POST["poblacio"];
+        $comarca = $_POST["comarca"];
+        $tipus = $_POST["tipus"];
+        $utilitat_publica = $_POST["utilitat_publica"];
+
+        DB::insert('INSERT INTO associacio(cif,adreca,poblacio,comarca,tipus,utilitat_publica) VALUES (?,?,?,?,?,?)', [$cif, $adreca, $poblacio, $comarca, $tipus, $utilitat_publica]);
+        return redirect('/mostraOng');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /*
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -58,7 +71,7 @@ class ongctl extends Controller
         ]);
         $novaong->save();
         return redirect()->route('ong.mostraOng')->with('Exit','Dades afegides');
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -82,12 +95,13 @@ class ongctl extends Controller
         $poblacio = $_POST["poblacio"];
         $comarca = $_POST["comarca"];
         $tipus = $_POST["tipus"];
+        $utilitat_publica = $_POST["utilitat_publica"];
 
         $formCif = DB::select('select cif from associacio where cif = ?', [$cif]);
         $ongCif = (string)$formCif[0]->cif;
 
         if($ongCif === $cif) {
-            DB::update('update associacio set cif = ?, adreca = ?, poblacio = ?, comarca = ?, tipus = ? where cif = ?', [$cif, $adreca, $poblacio, $comarca, $tipus]);
+            DB::update('update associacio set cif = ?, adreca = ?, poblacio = ?, comarca = ?, tipus = ?, utilitat_publica = ? where cif = ?', [$cif, $adreca, $poblacio, $comarca, $tipus]);
             return redirect('/mostraOng');
         }
     }
