@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Ong;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class Users extends Controller
@@ -31,6 +32,32 @@ class Users extends Controller
     public function create()
     {
         return view('ong.users.addUsers');
+    }
+
+    public function addUser() {
+
+        $email = $_POST["email"];
+        $name = $_POST["name"];
+        $password = $_POST["password"];
+        $passwordRepeat = $_POST["passwordRepeat"];
+
+        if($password === $passwordRepeat) {
+            $hashed = Hash::make($password);
+            DB::insert('INSERT INTO users(name,email,password,created_at) VALUES (?,?,?,current_timestamp)', [$name, $email, $hashed]);
+        } else {
+            return redirect('/errorAddingUser');
+        }
+
+        return redirect('/listUsers');
+
+    }
+
+    public function addUserError() {
+        return view('ong.users.errorHandlers.errorAddingUser');
+    }
+
+    public function errorModifyingUser() {
+        return view('ong.users.errorHandlers.errorAddingUser');
     }
 
     /**
@@ -86,10 +113,24 @@ class Users extends Controller
         $formEmail = DB::select('select email from users where email = ?', [$email]);
         $userEmail = (string)$formEmail[0]->email;
 
+        if(strlen($email) == 0) {
+            return redirect('/errorModifyingUser');
+        }
+
         if($userEmail === $email) {
             DB::update('update users set name = ? where email = ?', [$name, $email]);
+            if($newPassword === $newPasswordRepeat) {
+                $hashed = Hash::make($newPassword);
+                DB::update('update users set password = ? where email = ?', [$hashed, $email]);
+            } else {
+                return redirect('/errorModifyingUser');
+            }
             return redirect('/listUsers');
+        } else {
+            return redirect('/errorModifyingUser');
         }
+
+
     }
 
     public function renderDelete()

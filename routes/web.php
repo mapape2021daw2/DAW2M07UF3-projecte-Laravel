@@ -33,6 +33,14 @@ Route::get('deleteUsers/deleteUser/{id}', function () {
     return view('deleteUsers');
 });
 
+Route::get('errorAddingUser', function() {
+    return view('errorAddingUser');
+});
+
+Route::get('errorModifyingUser', function() {
+    return view('errorModifyingUser');
+});
+
 
 Auth::routes();
 
@@ -44,6 +52,9 @@ Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('ad
 Route::get('/modifyUsers', [App\Http\Controllers\Users::class, 'renderModify'])->name('modifyUsers');
 Route::get('/deleteUsers', [App\Http\Controllers\Users::class, 'renderDelete'])->name('deleteUsers');
 Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserData'])->name('modifyUserData');
+Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
+Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
+Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
 
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');
@@ -51,4 +62,5 @@ Route::get('mostraong','ongctl@index');
 Route::get('esborra-ong','ongctl@index');
 Route::get('esbong/{cif}','ongctl@destroy');
 Route::post('modifyUserData','Users@modifyUserData');
+Route::post('addUser','Users@addUser');
 Route::get('deleteUsers/deleteUser/{id}','Users@destroy');
