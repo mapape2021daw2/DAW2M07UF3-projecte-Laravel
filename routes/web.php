@@ -56,6 +56,20 @@ Route::get('errorModifyingUser', function() {
     return view('errorModifyingUser');
 });
 
+/*Worker routes*/
+Route::get('/crudOptionsWorkers', function() {
+    return view('crudOptionsWorkers');
+});
+
+Route::get('/deleteWorkers', function() {
+    return view('deleteWorkers');
+});
+Route::get('deleteWorkers/deleteWorker/{nif}', function () {
+    return view('deleteWorkers');
+});
+
+
+
 
 Auth::routes();
 
@@ -104,7 +118,7 @@ Route::get('/modifySocisData', [App\Http\Controllers\Soci::class, 'modifySocisDa
 Route::post('modifySocisData','Soci@modifySocisData');
 Route::get('esborraSocis/esbSocis/{id}','Soci@destroy');
 
-
+/*USERS*/
 Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');
 Route::get('/listUsers', [App\Http\Controllers\Users::class, 'index'])->name('listUsers');
 Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('addUsers');
@@ -114,6 +128,15 @@ Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserDat
 Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
 Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
 Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
+
+/*WORKERS*/
+Route::get('/crudOptionsWorkers', [App\Http\Controllers\Worker::class, 'crudOptions'])->name('crudOptionsWorkers');
+Route::get('/listWorkers', [App\Http\Controllers\Worker::class, 'index'])->name('listWorkers');
+Route::get('/addWorkers', [App\Http\Controllers\Worker::class, 'create'])->name('addWorkers');
+Route::get('/modifyWorkers', [App\Http\Controllers\Worker::class, 'renderModify'])->name('modifyWorkers');
+Route::get('/deleteWorkers', [App\Http\Controllers\Worker::class, 'renderDelete'])->name('deleteWorkers');
+Route::get('/deleteWorkers/deleteWorker/{nif}','Worker@destroy');
+Route::post('addWorker','Worker@addWorker');
 
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');

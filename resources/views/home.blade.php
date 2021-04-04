@@ -22,7 +22,7 @@
                                 <a href="{{ route('sociCrudOptions') }}" class="text-white">Manteniment de les dades dels socis de la CCONG</a>
                             </button>
                             <button class="btn btn-dark" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
-                                <a href="{{ route('home') }}" class="text-white">Manteniment de les dades dels treballadors de la CCONG</a>
+                                <a href="{{ route('crudOptionsWorkers') }}" class="text-white">Manteniment de les dades dels treballadors de la CCONG</a>
                             </button>
                             <button class="btn btn-primary" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
                                 <a href="{{ route('usersCrudOptions') }}" class="text-white">Manteniment de les dades d'usuaris de l'aplicació</a>
