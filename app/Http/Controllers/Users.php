@@ -11,7 +11,7 @@ use DB;
 class Users extends Controller
 {
     public function crudOptions() {
-        return view('ong.users.crudOptions');
+        return view('users.crudOptions');
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class Users extends Controller
     public function index()
     {
         $users = DB::select('select * from users');
-        return view('ong.users.listUsers',['users'=>$users]);
+        return view('users.listUsers',['users'=>$users]);
     }
 
     /**
@@ -31,7 +31,7 @@ class Users extends Controller
      */
     public function create()
     {
-        return view('ong.users.addUsers');
+        return view('users.addUsers');
     }
 
     public function addUser() {
@@ -53,11 +53,11 @@ class Users extends Controller
     }
 
     public function addUserError() {
-        return view('ong.users.errorHandlers.errorAddingUser');
+        return view('users.errorHandlers.errorAddingUser');
     }
 
     public function errorModifyingUser() {
-        return view('ong.users.errorHandlers.errorAddingUser');
+        return view('users.errorHandlers.errorAddingUser');
     }
 
     /**
@@ -100,7 +100,7 @@ class Users extends Controller
     }
 
     public function renderModify() {
-        return view('ong.users.modifyUsers');
+        return view('users.modifyUsers');
     }
 
     public function modifyUserData()
@@ -136,7 +136,7 @@ class Users extends Controller
     public function renderDelete()
     {
         $users = DB::select('select * from users');
-        return view('ong.users.deleteUsers', ['users'=>$users]);
+        return view('users.deleteUsers', ['users'=>$users]);
     }
 
     /**

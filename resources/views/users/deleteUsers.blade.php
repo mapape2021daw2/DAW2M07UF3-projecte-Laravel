@@ -8,34 +8,33 @@
     @endif
     <div class="container">
         <div class="content">
+            <h2 style="text-align: center">ESBORRAR USUARI</h2>
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">CIF</th>
-                    <th scope="col">Adreça</th>
-                    <th scope="col">Població</th>
-                    <th scope="col">Comarca</th>
-                    <th scope="col">Tipus associació</th>
-                    <th scope="col">Utilitat pública</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">CREACIÓ</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($ongs as $ong)
+                @foreach ($users ?? '' as $user)
                     <tr>
-                        <td>{{ $ong->cif }}</td>
-                        <td>{{ $ong->adreca }}</td>
-                        <td>{{ $ong->poblacio }}</td>
-                        <td>{{ $ong->comarca }}</td>
-                        <td>{{ $ong->tipus }}</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at }}</td>
                         <td>
-                            <form action="esborraOng/esbOng/{{$ong->cif}}" method="get">
+                            <form action="deleteUsers/deleteUser/{{$user->id}}" method="get">
                                 <button class="btn btn-danger" type="submit">Esborra</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
+            </table>
         </div>
     </div>
 @endsection

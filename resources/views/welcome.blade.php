@@ -32,6 +32,7 @@
     <body>
         <div class="container">
              <div class="content">
+             <img src="{{ asset('images/logo.png') }}" width="250" height="150"><br>
                  <h1 class="dark:text-white">PROJECTE M07UF3</h1>
                  @if (Route::has('login'))
                      <div class="hidden top-0 right-0 py-4 sm:block">

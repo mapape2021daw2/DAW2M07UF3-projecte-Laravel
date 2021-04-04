@@ -8,8 +8,8 @@
     @endif
     <div class="container col-5">
         <div class="content">
-            <h2 style="text-align: center">AFEGIR ONG</h2>
-            <form action="/afegirOng" method="post" class="form-group">
+            <h2 style="text-align: center">MODIFICAR ONG</h2>
+            <form action="/modifyOngData" method="post" class="form-group">
                 @csrf
                 <label for="">CIF</label>
                 <input class="form-control" type="text" placeholder="CIF" name="cif" required>

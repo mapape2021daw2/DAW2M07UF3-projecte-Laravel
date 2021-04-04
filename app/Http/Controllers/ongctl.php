@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Ong;
 use DB;
 
 class ongctl extends Controller
 {
+    public function crudOptions() {
+        return view('ong.crudOptionsOng');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,6 @@ class ongctl extends Controller
     {
         $ongs = DB::select('select * from associacio');
         return view('ong.mostraOng',['ongs'=>$ongs]);
-        //return view('ong.esborraOng',['ongs'=>$ongs]);
     }
 
     /**
@@ -31,12 +32,25 @@ class ongctl extends Controller
         return view('ong.afegirOng');
     }
 
+    public function afegirOng(Request $request) {
+        $cif = $request->get('cif');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $comarca = $request->get('comarca');
+        $tipus = $request->get('tipus');
+        $utilitat_publica = $request->get('utilitat_publica');
+
+        DB::insert('INSERT INTO associacio(cif,adreca,poblacio,comarca,tipus,utilitat_publica) VALUES (?,?,?,?,?,?)', [$cif, $adreca, $poblacio, $comarca, $tipus, $utilitat_publica]);
+        return redirect('/mostraOng');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /*
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -56,8 +70,8 @@ class ongctl extends Controller
             //declarada??
         ]);
         $novaong->save();
-        return redirect()->route('ong.create')->with('Exit','Dades afegides');
-    }
+        return redirect()->route('ong.mostraOng')->with('Exit','Dades afegides');
+    }*/
 
     /**
      * Display the specified resource.
@@ -70,27 +84,32 @@ class ongctl extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function renderModify() {
+        return view('ong.modificaOng');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function modifyOngData(Request $request)
     {
-        //
+        $cif = $request->get('cif');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $comarca = $request->get('comarca');
+        $tipus = $request->get('tipus');
+        $utilitat_publica = $request->get('utilitat_publica');
+
+        $formCif = DB::select('select cif from associacio where cif = ?', [$cif]);
+        $ongCif = (string)$formCif[0]->cif;
+
+        if($ongCif === $cif) {
+            DB::update('update associacio set adreca = ?, poblacio = ?, comarca = ?, tipus = ?, utilitat_publica = ? where cif = ?', [$adreca, $poblacio, $comarca, $tipus, $utilitat_publica, $cif]);
+            return redirect('/mostraOng');
+        }
+    }
+
+    public function renderDelete()
+    {
+        $ongs = DB::select('select * from associacio');
+        return view('ong.esborraOng', ['ongs'=>$ongs]);
     }
 
     /**
@@ -99,9 +118,9 @@ class ongctl extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cif)
     {
         DB::select('delete from associacio where cif = ?', [$cif]);
-        echo "Registre esborrat";
+        return redirect('/esborraOng');
     }
 }
