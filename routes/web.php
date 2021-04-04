@@ -62,7 +62,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /*ASSOCIACIONS*/
 Route::get('/ongCrudOptions', [App\Http\Controllers\ongctl::class, 'crudOptions'])->name('ongCrudOptions');
 Route::get('/mostraOng', [App\Http\Controllers\ongctl::class, 'index'])->name('mostraOng');
-Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'afegirOng'])->name('afegirOng');
+Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
 Route::post('afegirOng', 'ongctl@afegirOng');
 Route::get('/modificaOng', [App\Http\Controllers\ongctl::class, 'renderModify'])->name('modificaOng');
 Route::get('/esborraOng', [App\Http\Controllers\ongctl::class, 'renderDelete'])->name('esborraOng');
@@ -71,14 +71,15 @@ Route::post('modifyOngData','ongctl@modifyOngData');
 Route::get('esborraOng/esbOng/{id}','ongctl@destroy');
 
 /*SOCIS*/
-Route::get('/sociCrudOptions', [App\Http\Controllers\ongctl::class, 'crudOptions'])->name('ongCrudOptions');
-Route::get('/mostraOng', [App\Http\Controllers\ongctl::class, 'index'])->name('mostraOng');
-Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
-Route::get('/modificaOng', [App\Http\Controllers\ongctl::class, 'renderModify'])->name('modificaOng');
-Route::get('/esborraOng', [App\Http\Controllers\ongctl::class, 'renderDelete'])->name('esborraOng');
-Route::get('/modifyOngData', [App\Http\Controllers\ongctl::class, 'modifyOngData'])->name('modifyOngData');
-Route::post('modifyOngData','ongctl@modifyOngData');
-Route::get('esborraOng/esbOng/{id}','ongctl@destroy');
+Route::get('/sociCrudOptions', [App\Http\Controllers\Soci::class, 'crudOptions'])->name('sociCrudOptions');
+Route::get('/mostraSocis', [App\Http\Controllers\Soci::class, 'index'])->name('mostraSocis');
+Route::get('/afegirSocis', [App\Http\Controllers\Soci::class, 'create'])->name('afegirSocis');
+Route::post('afegirSocis', 'Soci@afegirSocis');
+Route::get('/modificaSocis', [App\Http\Controllers\Soci::class, 'renderModify'])->name('modificaSocis');
+Route::get('/esborraSocis', [App\Http\Controllers\Soci::class, 'renderDelete'])->name('esborraSocis');
+Route::get('/modifySocisData', [App\Http\Controllers\Soci::class, 'modifySocisData'])->name('modifySocisData');
+Route::post('modifySocisData','Soci@modifySocisData');
+Route::get('esborraSocis/esbSocis/{id}','Soci@destroy');
 
 /*USUARIS*/
 Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');

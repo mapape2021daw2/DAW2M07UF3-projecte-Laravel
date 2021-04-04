@@ -32,13 +32,13 @@ class ongctl extends Controller
         return view('ong.afegirOng');
     }
 
-    public function afegirOng() {
-        $cif = $_POST["cif"];
-        $adreca = $_POST["adreca"];
-        $poblacio = $_POST["poblacio"];
-        $comarca = $_POST["comarca"];
-        $tipus = $_POST["tipus"];
-        $utilitat_publica = $_POST["utilitat_publica"];
+    public function afegirOng(Request $request) {
+        $cif = $request->get('cif');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $comarca = $request->get('comarca');
+        $tipus = $request->get('tipus');
+        $utilitat_publica = $request->get('utilitat_publica');
 
         DB::insert('INSERT INTO associacio(cif,adreca,poblacio,comarca,tipus,utilitat_publica) VALUES (?,?,?,?,?,?)', [$cif, $adreca, $poblacio, $comarca, $tipus, $utilitat_publica]);
         return redirect('/mostraOng');
@@ -88,20 +88,20 @@ class ongctl extends Controller
         return view('ong.modificaOng');
     }
 
-    public function modifyOngData()
+    public function modifyOngData(Request $request)
     {
-        $cif = $_POST["cif"];
-        $adreca = $_POST["adreca"];
-        $poblacio = $_POST["poblacio"];
-        $comarca = $_POST["comarca"];
-        $tipus = $_POST["tipus"];
-        $utilitat_publica = $_POST["utilitat_publica"];
+        $cif = $request->get('cif');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $comarca = $request->get('comarca');
+        $tipus = $request->get('tipus');
+        $utilitat_publica = $request->get('utilitat_publica');
 
         $formCif = DB::select('select cif from associacio where cif = ?', [$cif]);
         $ongCif = (string)$formCif[0]->cif;
 
         if($ongCif === $cif) {
-            DB::update('update associacio set cif = ?, adreca = ?, poblacio = ?, comarca = ?, tipus = ?, utilitat_publica = ? where cif = ?', [$cif, $adreca, $poblacio, $comarca, $tipus]);
+            DB::update('update associacio set adreca = ?, poblacio = ?, comarca = ?, tipus = ?, utilitat_publica = ? where cif = ?', [$adreca, $poblacio, $comarca, $tipus, $utilitat_publica, $cif]);
             return redirect('/mostraOng');
         }
     }

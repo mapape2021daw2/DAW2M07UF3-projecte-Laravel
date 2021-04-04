@@ -19,10 +19,10 @@
                                 <a href="{{ route('afegirSocis') }}" class="text-white">Afegir un soci</a>
                             </button>
                             <button class="btn btn-secondary" style="text-align: center; width: 20%; margin: 10px 10px 10px 10px;">
-                                <a href="{{ route('modificarSocis') }}" class="text-white">Modificar un soci</a>
+                                <a href="{{ route('modificaSocis') }}" class="text-white">Modificar un soci</a>
                             </button>
                             <button class="btn btn-dark" style="text-align: center; width: 20%; margin: 10px 10px 10px 10px;">
-                                <a href="{{ route('esborrarSocis') }}" class="text-white">Eliminar un soci</a>
+                                <a href="{{ route('esborraSocis') }}" class="text-white">Eliminar un soci</a>
                             </button>
                             <button class="btn btn-primary" style="text-align: center; width: 20%; margin: 10px 10px 10px 10px;">
                                 <a href="{{ route('mostraSocis') }}" class="text-white">Mostrar un soci</a>
