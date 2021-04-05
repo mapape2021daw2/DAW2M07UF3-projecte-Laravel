@@ -118,7 +118,82 @@ class Worker extends Controller
     }
 
     public function renderModify() {
-        return view('workers.modifyWorkers');
+        $aso = DB::select('select * from associacio');
+        return view('workers.modifyWorkers', ['aso'=>$aso]);
+    }
+
+    public function modifyWorker() {
+
+        $nif = $_POST["nif"];
+        $name = $_POST["name"];
+        $address = $_POST["address"];
+        $city = $_POST["city"];
+        $area = $_POST["area"];
+        $phone = $_POST["phone"];
+        $mobile = $_POST["mobile"];
+        $email = $_POST["email"];
+        $aso = $_POST["asoSelection"];
+        $type = $_POST["workerType"];
+
+
+        if($type == "professional") {
+
+            $irpf = $_POST["irpf"];
+            $budget = $_POST["budget"];
+            $job = $_POST["job"];
+
+            DB::update('UPDATE treballador SET nom = ?, email = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, mobil = ?, associacio = ? WHERE nif = ?',
+                [
+                    $name,
+                    $email,
+                    $address,
+                    $city,
+                    $area,
+                    $phone,
+                    $mobile,
+                    $aso,
+                    $nif
+                ]
+            );
+            DB::update('UPDATE professional SET irpf = ?, quota_ss = ?, carrec = ? WHERE nif = ?',
+                [
+                    $irpf,
+                    $budget,
+                    $job,
+                    $nif
+                ]
+            );
+        } else {
+
+            $age = $_POST["age"];
+            $profession = $_POST["profession"];
+            $hours = $_POST["hours"];
+
+            DB::update('UPDATE treballador SET nom = ?, email = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, mobil = ?, associacio = ? WHERE nif = ?',
+                [
+                    $name,
+                    $email,
+                    $address,
+                    $city,
+                    $area,
+                    $phone,
+                    $mobile,
+                    $aso,
+                    $nif
+                ]
+            );
+            DB::update('UPDATE voluntari SET edat = ?, professio = ?, hores = ? WHERE nif = ?',
+                [
+                    $age,
+                    $profession,
+                    $hours,
+                    $nif
+                ]
+            );
+        }
+
+
+        return redirect('/listWorkers');
     }
 
     public function renderDelete()

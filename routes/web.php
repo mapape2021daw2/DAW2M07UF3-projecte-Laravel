@@ -137,6 +137,7 @@ Route::get('/modifyWorkers', [App\Http\Controllers\Worker::class, 'renderModify'
 Route::get('/deleteWorkers', [App\Http\Controllers\Worker::class, 'renderDelete'])->name('deleteWorkers');
 Route::get('/deleteWorkers/deleteWorker/{nif}','Worker@destroy');
 Route::post('addWorker','Worker@addWorker');
+Route::post('modifyWorker','Worker@modifyWorker');
 
 //Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
 Route::resource('ong','ongctl');

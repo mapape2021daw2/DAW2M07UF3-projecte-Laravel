@@ -20,6 +20,7 @@
                             <th scope="col">Mòbil</th>
                             <th scope="col">Email</th>
                             <th scope="col">Data alta</th>
+                            <th scope="col">Associació</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ $worker->mobil }}</td>
                         <td>{{ $worker->email }}</td>
                         <td>{{ $worker->data_alta }}</td>
+                        <td>{{ $worker->associacio }}</td>
                     </tr>
                     @endforeach
                     </tbody>
