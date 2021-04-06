@@ -41,11 +41,17 @@ class Users extends Controller
         $password = $_POST["password"];
         $passwordRepeat = $_POST["passwordRepeat"];
 
-        if($password === $passwordRepeat) {
-            $hashed = Hash::make($password);
-            DB::insert('INSERT INTO users(name,email,password,created_at) VALUES (?,?,?,current_timestamp)', [$name, $email, $hashed]);
-        } else {
+        $dbEmail = DB::select('SELECT email FROM users WHERE email = ?', [$email]);
+
+        if(!isset($dbEmail)) {
             return redirect('/errorAddingUser');
+        } else {
+            if($password === $passwordRepeat) {
+                $hashed = Hash::make($password);
+                DB::insert('INSERT INTO users(name,email,password,created_at) VALUES (?,?,?,current_timestamp)', [$name, $email, $hashed]);
+            } else {
+                return redirect('/errorAddingUser');
+            }
         }
 
         return redirect('/listUsers');

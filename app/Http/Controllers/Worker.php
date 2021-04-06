@@ -35,24 +35,28 @@ class Worker extends Controller
         return view('workers.addWorkers', ['aso' => $aso]);
     }
 
-    public function addWorker() {
+    public function addWorker(Request $request) {
 
-        $nif = $_POST["nif"];
-        $name = $_POST["name"];
-        $address = $_POST["address"];
-        $city = $_POST["city"];
-        $area = $_POST["area"];
-        $phone = $_POST["phone"];
-        $mobile = $_POST["mobile"];
-        $email = $_POST["email"];
-        $aso = $_POST["asoSelection"];
-        $type = $_POST["workerType"];
+        $nif = $request->get('nif');
+        $name = $request->get('name');
+        $address = $request->get('address');
+        $city = $request->get('city');
+        $area = $request->get('area');
+        $phone = $request->get('phone');
+        $mobile = $request->get('mobile');
+        $email = $request->get('email');
+        $aso = $request->get('asoSelection');
+        $type = $request->get('workerType');
 
         if($type == "professional") {
 
-            $irpf = $_POST["irpf"];
-            $budget = $_POST["budget"];
-            $job = $_POST["job"];
+            $irpf = $request->get('irpf');
+            $budget = $request->get('budget');
+            $job = $request->get('job');
+
+            if(empty($irpf) || empty($budget) || empty($job)) {
+                return view('workers.errorHandler.emptyFields');
+            }
 
             DB::insert('INSERT INTO treballador(nif, nom, email, adreca, poblacio, comarca, telefon, mobil, associacio,data_alta) VALUES (?,?,?,?,?,?,?,?,?,current_timestamp)',
                 [
@@ -77,9 +81,13 @@ class Worker extends Controller
             );
         } else {
 
-            $age = $_POST["age"];
-            $profession = $_POST["profession"];
-            $hours = $_POST["hours"];
+            $age = $request->get('age');
+            $profession = $request->get('profession');
+            $hours = $request->get('hours');
+
+            if(empty($age) || empty($profession) || empty($hours)) {
+                return view('workers.errorHandler.emptyFields');
+            }
 
             DB::insert('INSERT INTO treballador(nif, nom, email, adreca, poblacio, comarca, telefon, mobil, associacio,data_alta) VALUES (?,?,?,?,?,?,?,?,?,current_timestamp)',
                 [
@@ -124,23 +132,27 @@ class Worker extends Controller
 
     public function modifyWorker() {
 
-        $nif = $_POST["nif"];
-        $name = $_POST["name"];
-        $address = $_POST["address"];
-        $city = $_POST["city"];
-        $area = $_POST["area"];
-        $phone = $_POST["phone"];
-        $mobile = $_POST["mobile"];
-        $email = $_POST["email"];
-        $aso = $_POST["asoSelection"];
-        $type = $_POST["workerType"];
+        $nif = $request->get('nif');
+        $name = $request->get('name');
+        $address = $request->get('address');
+        $city = $request->get('city');
+        $area = $request->get('area');
+        $phone = $request->get('phone');
+        $mobile = $request->get('mobile');
+        $email = $request->get('email');
+        $aso = $request->get('asoSelection');
+        $type = $request->get('workerType');
 
 
         if($type == "professional") {
 
-            $irpf = $_POST["irpf"];
-            $budget = $_POST["budget"];
-            $job = $_POST["job"];
+            $irpf = $request->get('irpf');
+            $budget = $request->get('budget');
+            $job = $request->get('job');
+
+            if(empty($irpf) || empty($budget) || empty($job)) {
+                return view('workers.errorHandler.emptyFields');
+            }
 
             DB::update('UPDATE treballador SET nom = ?, email = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, mobil = ?, associacio = ? WHERE nif = ?',
                 [
@@ -165,9 +177,13 @@ class Worker extends Controller
             );
         } else {
 
-            $age = $_POST["age"];
-            $profession = $_POST["profession"];
-            $hours = $_POST["hours"];
+            $age = $request->get('age');
+            $profession = $request->get('profession');
+            $hours = $request->get('hours');
+
+            if(empty($age) || empty($profession) || empty($hours)) {
+                return view('workers.errorHandler.emptyFields');
+            }
 
             DB::update('UPDATE treballador SET nom = ?, email = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, mobil = ?, associacio = ? WHERE nif = ?',
                 [

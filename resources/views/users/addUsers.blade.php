@@ -12,7 +12,7 @@
             <form action="/addUser" method="post" class="form-group">
                 @csrf
                 <label for="">Email *</label>
-                <input class="form-control" type="text" placeholder="Introdueix el teu email" name="email" required>
+                <input class="form-control" type="email" placeholder="Introdueix el teu email" name="email" required>
                 <label for="">Nom *</label>
                 <input class="form-control" type="text" placeholder="Nom" name="name" required>
                 <label for="">Contrasenya nova *</label>
