@@ -32,6 +32,10 @@ class Soci extends Controller
         return view('socis.afegirSocis');
     }
 
+    public function afegirOng(Request $request) {
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
