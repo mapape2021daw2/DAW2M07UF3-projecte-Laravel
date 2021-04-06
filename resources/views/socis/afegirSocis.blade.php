@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
-<<<<<<< HEAD
 <head>
     <script src="{{ asset('js/socis.js') }}" defer></script>
 </head>
 
-=======
->>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 @section('content')
     @if(\Session::has('Exit'))
         <div class="alert alert-success">
@@ -15,11 +12,7 @@
     @endif
     <div class="container col-5">
         <div class="content">
-<<<<<<< HEAD
             <h2 style="text-align: center">AFEGIR SOCI</h2>
-=======
-            <h2 style="text-align: center">AFEGIR ONG</h2>
->>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
             <form action="/afegirSocis" method="post" class="form-group">
                 @csrf
                 <label for="">NIF</label>
@@ -38,7 +31,6 @@
                 <input class="form-control" type="telf" placeholder="Telèfon" name="telefon" required>
                 <label for="">Telèfon mòbil</label>
                 <input class="form-control" type="telf" placeholder="Mòbil" name="mobil" required>
-<<<<<<< HEAD
                 <label for="">Email</label>
                 <input class="form-control" type="email" placeholder="Email" name="email" required>
                 <label for="">Data d'alta</label>
@@ -49,12 +41,6 @@
                 <input onblur="trobarTotal()" class="quantitat form-control" type="text" placeholder="Aportacions voluntàries" name="aport_volunt" required>
                 <label for="">Aportació anual</label>
                 <input class="form-control" id="total" type="text" name="aport_anual" readonly>
-=======
-                <label for="">Quota</label>
-                <input class="form-control" type="email" placeholder="Email" name="email" required>
-                <label for="">Població</label>
-                <input class="form-control" type="text" placeholder="Població" name="poblacio" required>
->>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
                 <input type="submit" class="btn btn-success mt-4 col-2" value="Enviar">
             </form>
         </div>

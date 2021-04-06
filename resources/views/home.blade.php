@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-<<<<<<< HEAD
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -35,38 +34,4 @@
         </div>
     </div>
 </div>
-=======
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Menú principal') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        <div class="container">
-                            <button class="btn btn-success" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
-                                <a href="{{ route('ongCrudOptions') }}" class="text-white">Manteniment de les dades de la CCONG</a>
-                            </button>
-                            <button class="btn btn-secondary" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
-                                <a href="{{ route('sociCrudOptions') }}" class="text-white">Manteniment de les dades dels socis de la CCONG</a>
-                            </button>
-                            <button class="btn btn-dark" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
-                                <a href="{{ route('crudOptionsWorkers') }}" class="text-white">Manteniment de les dades dels treballadors de la CCONG</a>
-                            </button>
-                            <button class="btn btn-primary" style="text-align: center; width: 100%; margin: 10px 0 10px 0;">
-                                <a href="{{ route('usersCrudOptions') }}" class="text-white">Manteniment de les dades d'usuaris de l'aplicació</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
->>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 @endsection
