@@ -21,6 +21,10 @@ Route::get('/afegirOng', function () {
     return view('afegirOng');
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 /*Rutes associacions*/
 Route::get('/mostraOng', function () {
     return view('mostraOng');
@@ -55,6 +59,45 @@ Route::get('errorModifyingUser', function() {
     return view('errorModifyingUser');
 });
 
+<<<<<<< HEAD
+=======
+/*Worker routes*/
+Route::get('/crudOptionsWorkers', function() {
+    return view('crudOptionsWorkers');
+});
+
+Route::get('/deleteWorkers', function() {
+    return view('deleteWorkers');
+});
+Route::get('deleteWorkers/deleteWorker/{nif}', function () {
+    return view('deleteWorkers');
+});
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
+
+Route::get('/deleteUsers', function () {
+    return view('deleteUsers');
+});
+
+Route::get('deleteUsers/deleteUser/{id}', function () {
+    return view('deleteUsers');
+});
+
+Route::get('errorAddingUser', function() {
+    return view('errorAddingUser');
+});
+
+Route::get('errorModifyingUser', function() {
+    return view('errorModifyingUser');
+});
+
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -81,7 +124,11 @@ Route::get('/modifySocisData', [App\Http\Controllers\Soci::class, 'modifySocisDa
 Route::post('modifySocisData','Soci@modifySocisData');
 Route::get('esborraSocis/esbSocis/{id}','Soci@destroy');
 
+<<<<<<< HEAD
 /*USUARIS*/
+=======
+/*USERS*/
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');
 Route::get('/listUsers', [App\Http\Controllers\Users::class, 'index'])->name('listUsers');
 Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('addUsers');
@@ -91,6 +138,30 @@ Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserDat
 Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
 Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
 Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
+<<<<<<< HEAD
+=======
+
+/*WORKERS*/
+Route::get('/crudOptionsWorkers', [App\Http\Controllers\Worker::class, 'crudOptions'])->name('crudOptionsWorkers');
+Route::get('/listWorkers', [App\Http\Controllers\Worker::class, 'index'])->name('listWorkers');
+Route::get('/addWorkers', [App\Http\Controllers\Worker::class, 'create'])->name('addWorkers');
+Route::get('/modifyWorkers', [App\Http\Controllers\Worker::class, 'renderModify'])->name('modifyWorkers');
+Route::get('/deleteWorkers', [App\Http\Controllers\Worker::class, 'renderDelete'])->name('deleteWorkers');
+Route::get('/deleteWorkers/deleteWorker/{nif}','Worker@destroy');
+Route::post('addWorker','Worker@addWorker');
+Route::post('modifyWorker','Worker@modifyWorker');
+
+//Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
+Route::resource('ong','ongctl');
+Route::get('mostraong','ongctl@index');
+Route::get('esborra-ong','ongctl@index');
+Route::get('esbong/{cif}','ongctl@destroy');
+
+Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserData'])->name('modifyUserData');
+Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
+Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
+Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
 Route::post('modifyUserData','Users@modifyUserData');
 Route::post('addUser','Users@addUser');
 Route::get('deleteUsers/deleteUser/{id}','Users@destroy');

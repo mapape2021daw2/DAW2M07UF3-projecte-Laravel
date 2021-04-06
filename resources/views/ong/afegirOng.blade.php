@@ -28,4 +28,8 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38

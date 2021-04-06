@@ -60,6 +60,7 @@ class Users extends Controller
         return view('users.errorHandlers.errorAddingUser');
     }
 
+<<<<<<< HEAD
     /**
      * Store a newly created resource in storage.
      *
@@ -99,6 +100,8 @@ class Users extends Controller
         //
     }
 
+=======
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
     public function renderModify() {
         return view('users.modifyUsers');
     }
@@ -150,4 +153,8 @@ class Users extends Controller
         DB::select('delete from users where id = ?', [$id]);
         return redirect('/deleteUsers');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2dbd39b27258d24c8f128ee263833c240f944f38
