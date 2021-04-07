@@ -108,7 +108,7 @@ class Soci extends Controller
 
         if($sociNif === $nif) {
             DB::update('update associacio set nif = ?, nom = ?, cognoms = ?, adreca = ?, poblacio = ?, comarca = ?, telf_fixe = ?, 
-                        telf_mobil = ?, correu = ?, quota = ?, aportacio = ?  where nif = ?', [$nif, $nom, $cognoms, $adreca, $poblacio, $comarca, $telf_fixe, $telf_mobil, $correu, $quota, $aportacio]);
+                        telf_mobil = ?, correu = ?, quota = ?, aportacio = ?  where nif = ?',[$nif, $nom, $cognoms, $adreca, $poblacio, $comarca, $telf_fixe, $telf_mobil, $correu, $quota, $aportacio]);
             return redirect('/mostraSocis');
         }
     }
