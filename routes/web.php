@@ -79,7 +79,7 @@ Route::get('/modificaSocis', [App\Http\Controllers\Soci::class, 'renderModify'])
 Route::get('/esborraSocis', [App\Http\Controllers\Soci::class, 'renderDelete'])->name('esborraSocis');
 Route::get('/modifySocisData', [App\Http\Controllers\Soci::class, 'modifySocisData'])->name('modifySocisData');
 Route::post('modifySocisData','Soci@modifySocisData');
-Route::get('esborraSocis/esbSocis/{id}','Soci@destroy');
+Route::get('esborraSocis/esbSocis/{nif}','Soci@destroy');
 
 /*USUARIS*/
 Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');

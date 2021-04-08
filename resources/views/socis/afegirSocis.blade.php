@@ -19,8 +19,6 @@
                 <input class="form-control" type="text" placeholder="NIF" name="nif" required>
                 <label for="">Nom</label>
                 <input class="form-control" type="text" placeholder="Nom" name="nom" required>
-                <label for="">Cognoms</label>
-                <input class="form-control" type="text" placeholder="Cognoms" name="cognoms" required>
                 <label for="">Adreça</label>
                 <input class="form-control" type="text" placeholder="Adreça" name="adreca" required>
                 <label for="">Població</label>
@@ -40,7 +38,15 @@
                 <label for="">Aportacions voluntàries</label>
                 <input onblur="trobarTotal()" class="quantitat form-control" type="text" placeholder="Aportacions voluntàries" name="aport_volunt" required>
                 <label for="">Aportació anual</label>
-                <input class="form-control" id="total" type="text" name="aport_anual" readonly>
+                <input class="form-control" id="total" type="text" name="aportacio" readonly>
+                <label for="">Associació *</label>
+                <div>
+                    <select name="asoSelection" class="col-12">
+                        @foreach ($aso as $a)
+                            <option value="{{$a->cif}}">{{$a->cif}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <input type="submit" class="btn btn-success mt-4 col-2" value="Enviar">
             </form>
         </div>
