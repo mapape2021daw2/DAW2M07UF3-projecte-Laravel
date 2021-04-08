@@ -91,6 +91,13 @@ Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserDat
 Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
 Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
 Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
-Route::post('modifyUserData','Users@modifyUserData');
-Route::post('addUser','Users@addUser');
-Route::get('deleteUsers/deleteUser/{id}','Users@destroy');
+
+/*WORKERS*/
+Route::get('/crudOptionsWorkers', [App\Http\Controllers\Worker::class, 'crudOptions'])->name('crudOptionsWorkers');
+Route::get('/listWorkers', [App\Http\Controllers\Worker::class, 'index'])->name('listWorkers');
+Route::get('/addWorkers', [App\Http\Controllers\Worker::class, 'create'])->name('addWorkers');
+Route::get('/modifyWorkers', [App\Http\Controllers\Worker::class, 'renderModify'])->name('modifyWorkers');
+Route::get('/deleteWorkers', [App\Http\Controllers\Worker::class, 'renderDelete'])->name('deleteWorkers');
+Route::get('/deleteWorkers/deleteWorker/{nif}','Worker@destroy');
+Route::post('addWorker','Worker@addWorker');
+Route::post('modifyWorker','Worker@modifyWorker');

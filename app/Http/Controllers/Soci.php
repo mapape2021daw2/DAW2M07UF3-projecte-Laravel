@@ -32,9 +32,22 @@ class Soci extends Controller
         return view('socis.afegirSocis');
     }
 
-    public function afegirOng(Request $request) {
-        
+    public function afegirSoci(Request $request) {
+        $nif = $request->get('nif');
+        $nom = $request->get('nom');
+        $cognoms = $request->get('cognoms');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $telefon = $request->get('telefon');
+        $mobik = $request->get('mobil');
+        $email = $request->get('email');
+        $quota = $request->get('quota');
+        $aport_volunt = $request->get('aport_volunt');
+        $aport_anual = $request->get('aport_anual');
+        DB::insert('INSERT INTO soci(nif,nom,cognoms,adreca,poblacio,telefon,mobil,email,quota,aport_volunt,aport_anual) VALUES (?,?,?,?,?,?,?,?,?,?,?)', [$nif, $adreca, $poblacio, $comarca, $tipus, $utilitat_publica]);
+        return redirect('/mostraOng');
     }
+
 
     /**
      * Store a newly created resource in storage.
