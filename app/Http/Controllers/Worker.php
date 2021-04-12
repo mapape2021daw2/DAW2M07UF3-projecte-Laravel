@@ -130,7 +130,7 @@ class Worker extends Controller
         return view('workers.modifyWorkers', ['aso'=>$aso]);
     }
 
-    public function modifyWorker() {
+    public function modifyWorker(Request $request) {
 
         $nif = $request->get('nif');
         $name = $request->get('name');
