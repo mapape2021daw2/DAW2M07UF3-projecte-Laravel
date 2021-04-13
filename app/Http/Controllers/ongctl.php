@@ -39,7 +39,6 @@ class ongctl extends Controller
         $comarca = $request->get('comarca');
         $tipus = $request->get('tipus');
         $utilitat_publica = $request->get('utilitat_publica');
-
         DB::insert('INSERT INTO associacio(cif,adreca,poblacio,comarca,tipus,utilitat_publica) VALUES (?,?,?,?,?,?)', [$cif, $adreca, $poblacio, $comarca, $tipus, $utilitat_publica]);
         return redirect('/mostraOng');
     }

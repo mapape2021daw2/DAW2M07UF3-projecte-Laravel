@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,7 +22,6 @@ Route::get('/', function () {
 Route::get('/afegirOng', function () {
     return view('afegirOng');
 });
-
 
 /*Rutes associacions*/
 Route::get('/mostraOng', function () {
@@ -39,42 +40,6 @@ Route::get('esborraOng/esbOng/{id}', function () {
 Route::get('/listUsers', function () {
     return view('listUsers');
 });
-
-Route::get('/deleteUsers', function () {
-    return view('deleteUsers');
-});
-
-Route::get('deleteUsers/deleteUser/{id}', function () {
-    return view('deleteUsers');
-});
-
-Route::get('errorAddingUser', function() {
-    return view('errorAddingUser');
-});
-
-Route::get('errorModifyingUser', function() {
-    return view('errorModifyingUser');
-});
-
-/*Worker routes*/
-Route::get('/crudOptionsWorkers', function() {
-    return view('crudOptionsWorkers');
-});
-
-Route::get('/deleteWorkers', function() {
-    return view('deleteWorkers');
-});
-Route::get('deleteWorkers/deleteWorker/{nif}', function () {
-    return view('deleteWorkers');
-});
-
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/afegirOng', [App\Http\Controllers\ongctl::class, 'create'])->name('afegirOng');
 
 Route::get('/deleteUsers', function () {
     return view('deleteUsers');
@@ -116,9 +81,9 @@ Route::get('/modificaSocis', [App\Http\Controllers\Soci::class, 'renderModify'])
 Route::get('/esborraSocis', [App\Http\Controllers\Soci::class, 'renderDelete'])->name('esborraSocis');
 Route::get('/modifySocisData', [App\Http\Controllers\Soci::class, 'modifySocisData'])->name('modifySocisData');
 Route::post('modifySocisData','Soci@modifySocisData');
-Route::get('esborraSocis/esbSocis/{id}','Soci@destroy');
+Route::get('esborraSocis/esbSocis/{nif}','Soci@destroy');
 
-/*USERS*/
+/*USUARIS*/
 Route::get('/usersCrudOptions', [App\Http\Controllers\Users::class, 'crudOptions'])->name('usersCrudOptions');
 Route::get('/listUsers', [App\Http\Controllers\Users::class, 'index'])->name('listUsers');
 Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('addUsers');
@@ -138,17 +103,3 @@ Route::get('/deleteWorkers', [App\Http\Controllers\Worker::class, 'renderDelete'
 Route::get('/deleteWorkers/deleteWorker/{nif}','Worker@destroy');
 Route::post('addWorker','Worker@addWorker');
 Route::post('modifyWorker','Worker@modifyWorker');
-
-//Route::get('/ong', [App\Http\Controllers\ongctl::class, 'index'])->name('ong');
-Route::resource('ong','ongctl');
-Route::get('mostraong','ongctl@index');
-Route::get('esborra-ong','ongctl@index');
-Route::get('esbong/{cif}','ongctl@destroy');
-
-Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserData'])->name('modifyUserData');
-Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
-Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
-Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
-Route::post('modifyUserData','Users@modifyUserData');
-Route::post('addUser','Users@addUser');
-Route::get('deleteUsers/deleteUser/{id}','Users@destroy');

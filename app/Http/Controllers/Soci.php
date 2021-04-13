@@ -29,8 +29,33 @@ class Soci extends Controller
      */
     public function create()
     {
-        return view('socis.afegirSocis');
+        $aso = DB::select('select * from associacio');
+        return view('socis.afegirSocis', ['aso' => $aso]);
     }
+
+    public function afegirSocis(Request $request) {
+        try {
+            $nif = $request->get('nif');
+            $nom = $request->get('nom');
+            $adreca = $request->get('adreca');
+            $poblacio = $request->get('poblacio');
+            $comarca = $request->get('comarca');
+            $telefon = $request->get('telefon');
+            $mobil = $request->get('mobil');
+            $email = $request->get('email');
+            $data_alta = $request->get('data_alta');
+            $quota = $request->get('quota');
+            $aport_volunt = $request->get('aport_volunt');
+            $aport_anual = $request->get('aportacio');
+            $associacio = $request->get('asoSelection');
+            DB::insert('INSERT INTO soci(nif,nom,adreca,poblacio,comarca,telefon,mobil,email,data_alta,quota,aport_volunt,aportacio, associacio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [$nif, $nom, $adreca, $poblacio, $comarca, $telefon, $mobil, $email, $data_alta, $quota, $aport_volunt, $aport_anual, $associacio]);
+            return redirect('/mostraSocis');
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError('No es pot afegir el usuari amb nif ' . $request->input('nif'));
+        }
+        return view('socis.mostraSocis');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,6 +63,7 @@ class Soci extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /*
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -68,7 +94,7 @@ class Soci extends Controller
         ]);
         $nouSoci->save();
         return redirect()->route('socis.create')->with('Exit','Dades afegides');
-    }
+    }*/
 
     /**
      * Display the specified resource.
@@ -82,37 +108,40 @@ class Soci extends Controller
     }
 
     public function renderModify() {
-        return view('socis.modificarSocis');
+        $aso = DB::select('select * from associacio');
+        return view('socis.modificarSocis', ['aso'=>$aso]);
     }
 
-    public function modifySocisData()
+    public function modifySocisData(Request $request)
     {
-        $nif = $_POST["nif"];
-        $nom = $_POST["nom"];
-        $cognoms = $_POST["cognoms"];
-        $adreca = $_POST["adreca"];
-        $poblacio = $_POST["poblacio"];
-        $comarca = $_POST["comarca"];
-        $telf_fixe = $_POST["telf_fixe"];
-        $telf_mobil = $_POST["telf_mobil"];
-        $correu = $_POST["correu"];
-        $quota = $_POST["quota"];
-        $aportacio = $_POST["aportacio"];
+        $nif = $request->get('nif');
+        $nom = $request->get('nom');
+        $adreca = $request->get('adreca');
+        $poblacio = $request->get('poblacio');
+        $comarca = $request->get('comarca');
+        $telefon = $request->get('telefon');
+        $mobil = $request->get('mobil');
+        $email = $request->get('email');
+        $data_alta = $request->get('data_alta');
+        $quota = $request->get('quota');
+        $aport_volunt = $request->get('aport_volunt');
+        $aport_anual = $request->get('aportacio');
+        $associacio = $request->get('asoSelection');
 
         $formNif = DB::select('select nif from soci where nif = ?', [$nif]);
         $sociNif = (string)$formNif[0]->nif;
 
         if($sociNif === $nif) {
-            DB::update('update associacio set nif = ?, nom = ?, cognoms = ?, adreca = ?, poblacio = ?, comarca = ?, telf_fixe = ?, 
-                        telf_mobil = ?, correu = ?, quota = ?, aportacio = ?  where nif = ?', [$nif, $nom, $cognoms, $adreca, $poblacio, $comarca, $telf_fixe, $telf_mobil, $correu, $quota, $aportacio]);
+            DB::update('update soci set nom = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, 
+                        mobil = ?, email = ?, data_alta = ?, quota = ?, aport_volunt = ?, aportacio = ?, associacio = ?  where nif = ?',[$nom, $adreca, $poblacio, $comarca, $telefon, $mobil, $email, $data_alta, $quota, $aport_volunt, $aport_anual, $associacio, $nif]);
             return redirect('/mostraSocis');
         }
     }
 
     public function renderDelete()
     {
-        $users = DB::select('select * from soci');
-        return view('socis.eliminarSocis', ['socis'=>$socis]);
+        $socis = DB::select('select * from soci');
+        return view('socis.esborrarSocis', ['socis'=>$socis]);
     }
 
     /**
@@ -121,9 +150,9 @@ class Soci extends Controller
      * @param  int  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nif)
     {
-        DB::select('delete from soci where id = ?', [$id]);
-        return redirect('/eliminarSocis');
+        DB::select('delete from soci where nif = ?', [$nif]);
+        return redirect('/esborrarSocis');
     }
 }

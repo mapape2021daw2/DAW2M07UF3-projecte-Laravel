@@ -66,6 +66,45 @@ class Users extends Controller
         return view('users.errorHandlers.errorAddingUser');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'cif'       =>  'required',
+            'adreca'   =>  'required',
+            'poblacio'   =>  'required',
+            'comarca'   =>  'required',
+            'tipus'   =>  'required',
+            //declarada???
+        ]);
+        $novaong = new Alum([
+            'cif'       =>  $request->get('cif'),
+            'adreca'   =>  $request->get('adreca'),
+            'poblacio'   =>  $request->get('poblacio'),
+            'comarca'       =>  $request->get('comarca'),
+            'tipus'       =>  $request->get('tipus'),
+            //declarada??
+        ]);
+        $novaong->save();
+        return redirect()->route('ong.create')->with('Exit','Dades afegides');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
     public function renderModify() {
         return view('users.modifyUsers');
     }
