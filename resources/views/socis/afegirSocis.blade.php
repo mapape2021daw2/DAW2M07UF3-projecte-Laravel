@@ -10,6 +10,9 @@
             <p>{{\Session::get('Exit')}}</p>
         </div>
     @endif
+    @if (session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
     <div class="container col-5">
         <div class="content">
             <h2 style="text-align: center">AFEGIR SOCI</h2>

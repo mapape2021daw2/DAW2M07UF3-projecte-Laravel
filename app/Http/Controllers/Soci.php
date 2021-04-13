@@ -34,21 +34,26 @@ class Soci extends Controller
     }
 
     public function afegirSocis(Request $request) {
-        $nif = $request->get('nif');
-        $nom = $request->get('nom');
-        $adreca = $request->get('adreca');
-        $poblacio = $request->get('poblacio');
-        $comarca = $request->get('comarca');
-        $telefon = $request->get('telefon');
-        $mobil = $request->get('mobil');
-        $email = $request->get('email');
-        $data_alta = $request->get('data_alta');
-        $quota = $request->get('quota');
-        $aport_volunt = $request->get('aport_volunt');
-        $aport_anual = $request->get('aportacio');
-        $associacio = $request->get('asoSelection');
-        DB::insert('INSERT INTO soci(nif,nom,adreca,poblacio,comarca,telefon,mobil,email,data_alta,quota,aport_volunt,aportacio, associacio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [$nif, $nom, $adreca, $poblacio, $comarca, $telefon, $mobil, $email, $data_alta, $quota, $aport_volunt, $aport_anual, $associacio]);
-        return redirect('/mostraSocis');
+        try {
+            $nif = $request->get('nif');
+            $nom = $request->get('nom');
+            $adreca = $request->get('adreca');
+            $poblacio = $request->get('poblacio');
+            $comarca = $request->get('comarca');
+            $telefon = $request->get('telefon');
+            $mobil = $request->get('mobil');
+            $email = $request->get('email');
+            $data_alta = $request->get('data_alta');
+            $quota = $request->get('quota');
+            $aport_volunt = $request->get('aport_volunt');
+            $aport_anual = $request->get('aportacio');
+            $associacio = $request->get('asoSelection');
+            DB::insert('INSERT INTO soci(nif,nom,adreca,poblacio,comarca,telefon,mobil,email,data_alta,quota,aport_volunt,aportacio, associacio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [$nif, $nom, $adreca, $poblacio, $comarca, $telefon, $mobil, $email, $data_alta, $quota, $aport_volunt, $aport_anual, $associacio]);
+            return redirect('/mostraSocis');
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError('No es pot afegir el usuari amb nif ' . $request->input('nif'));
+        }
+        return view('socis.mostraSocis');
     }
 
 
