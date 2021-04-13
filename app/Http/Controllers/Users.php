@@ -40,6 +40,7 @@ class Users extends Controller
         $name = $_POST["name"];
         $password = $_POST["password"];
         $passwordRepeat = $_POST["passwordRepeat"];
+        $is_admin = $_POST["is_admin"];
 
         $dbEmail = DB::select('SELECT email FROM users WHERE email = ?', [$email]);
 
@@ -48,7 +49,7 @@ class Users extends Controller
         } else {
             if($password === $passwordRepeat) {
                 $hashed = Hash::make($password);
-                DB::insert('INSERT INTO users(name,email,password,created_at) VALUES (?,?,?,current_timestamp)', [$name, $email, $hashed]);
+                DB::insert('INSERT INTO users(name,email,password,is_admin,created_at) VALUES (?,?,?,?,current_timestamp)', [$name, $email, $hashed, $is_admin]);
             } else {
                 return redirect('/errorAddingUser');
             }
@@ -64,34 +65,6 @@ class Users extends Controller
 
     public function errorModifyingUser() {
         return view('users.errorHandlers.errorAddingUser');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'cif'       =>  'required',
-            'adreca'   =>  'required',
-            'poblacio'   =>  'required',
-            'comarca'   =>  'required',
-            'tipus'   =>  'required',
-            //declarada???
-        ]);
-        $novaong = new Alum([
-            'cif'       =>  $request->get('cif'),
-            'adreca'   =>  $request->get('adreca'),
-            'poblacio'   =>  $request->get('poblacio'),
-            'comarca'       =>  $request->get('comarca'),
-            'tipus'       =>  $request->get('tipus'),
-            //declarada??
-        ]);
-        $novaong->save();
-        return redirect()->route('ong.create')->with('Exit','Dades afegides');
     }
 
     /**
