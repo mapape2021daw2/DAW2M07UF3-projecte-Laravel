@@ -26,7 +26,8 @@
                         <td>{{ $ong->adreca }}</td>
                         <td>{{ $ong->poblacio }}</td>   
                         <td>{{ $ong->comarca }}</td> 
-                        <td>{{ $ong->tipus }}</td>            
+                        <td>{{ $ong->tipus }}</td> 
+                        <td>{{ $ong->utilitat_publica === 1 ? "SI" : "NO"}}           
                     </tr>
                     @endforeach
                     </tbody>

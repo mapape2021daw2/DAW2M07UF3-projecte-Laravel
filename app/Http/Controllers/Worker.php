@@ -48,11 +48,21 @@ class Worker extends Controller
         $aso = $request->get('asoSelection');
         $type = $request->get('workerType');
 
+        $dbNif = DB::select('SELECT nif FROM treballador WHERE nif = ?', [$nif]);
+
+        if($dbNif) {
+            return view('workers.errorHandler.workerExists');
+        }
+
         if($type == "professional") {
 
             $irpf = $request->get('irpf');
             $budget = $request->get('budget');
             $job = $request->get('job');
+
+            if(empty($irpf) || empty($budget) || empty($job)) {
+                return view('workers.errorHandler.emptyFields');
+            }
 
             if(empty($irpf) || empty($budget) || empty($job)) {
                 return view('workers.errorHandler.emptyFields');

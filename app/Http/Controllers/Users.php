@@ -34,13 +34,13 @@ class Users extends Controller
         return view('users.addUsers');
     }
 
-    public function addUser() {
+    public function addUser(Request $request) {
 
-        $email = $_POST["email"];
-        $name = $_POST["name"];
-        $password = $_POST["password"];
-        $passwordRepeat = $_POST["passwordRepeat"];
-        $is_admin = $_POST["is_admin"];
+        $email = $request->get("email");
+        $name = $request->get("name");
+        $password = $request->get("password");
+        $passwordRepeat = $request->get("passwordRepeat");
+        $is_admin = $request->get("user_type");
 
         $dbEmail = DB::select('SELECT email FROM users WHERE email = ?', [$email]);
 
@@ -67,32 +67,21 @@ class Users extends Controller
         return view('users.errorHandlers.errorAddingUser');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     public function renderModify() {
         return view('users.modifyUsers');
     }
 
-    public function modifyUserData()
+    public function modifyUserData(Request $request)
     {
-        $email = $_POST["email"];
-        $name = $_POST["name"];
-        $newPassword = $_POST["newPassword"];
-        $newPasswordRepeat = $_POST["newPasswordRepeat"];
+        $email = $request->get("email");
+        $name = $request->get("name");
+        $newPassword = $request->get("newPassword");
+        $newPasswordRepeat = $request->get("newPasswordRepeat");
 
         $formEmail = DB::select('select email from users where email = ?', [$email]);
         $userEmail = (string)$formEmail[0]->email;
 
-        if(strlen($email) == 0) {
+        if(strlen($email) == 0 || !$userEmail) {
             return redirect('/errorModifyingUser');
         }
 
