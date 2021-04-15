@@ -21,10 +21,10 @@
                 <input class="form-control" type="password" placeholder="Contrasenya" name="passwordRepeat" required>
                 <label for="">Tipus *</label>
                 <div>
-                    <input type="radio" id="ordinary" name="user_type" value="ordinary" checked>
+                    <input type="radio" id="ordinary" name="user_type" value="0" checked>
                     <label for="ordinary">Ordinari</label>
                     <br>
-                    <input type="radio" id="admin" name="user_type" value="admin">
+                    <input type="radio" id="admin" name="user_type" value="1">
                     <label for="admin">Admin</label>
                 </div>
                 <input type="submit" class="btn btn-success mt-4 col-2" value="Enviar">
