@@ -90,7 +90,8 @@ Route::get('/addUsers', [App\Http\Controllers\Users::class, 'create'])->name('ad
 Route::get('/modifyUsers', [App\Http\Controllers\Users::class, 'renderModify'])->name('modifyUsers');
 Route::get('/deleteUsers', [App\Http\Controllers\Users::class, 'renderDelete'])->name('deleteUsers');
 Route::get('/modifyUserData', [App\Http\Controllers\Users::class, 'modifyUserData'])->name('modifyUserData');
-Route::get('/addUser', [App\Http\Controllers\Users::class, 'addUser'])->name('addUser');
+Route::post('addUser', 'Users@addUser');
+Route::post('modifyUserData','Users@modifyUserData');
 Route::get('/errorAddingUser', [App\Http\Controllers\Users::class, 'addUserError'])->name('addUserError');
 Route::get('/errorModifyingUser', [App\Http\Controllers\Users::class, 'errorModifyingUser'])->name('errorModifyingUser');
 

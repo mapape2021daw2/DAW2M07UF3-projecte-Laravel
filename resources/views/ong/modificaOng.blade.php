@@ -22,8 +22,8 @@
                 <label for="">Tipus d'ONG</label>
                 <input class="form-control" type="text" placeholder="Tipus ONG" name="tipus" required><br>
                 <label for="">Declarada com d'utilitat pública</label><br>
-                Sí<input name="utilitat_publica" type="checkbox" value="1"><br>
-                No<input name="utilitat_publica" type="checkbox" value="0"><br>
+                Sí<input name="utilitat_publica" type="radio" value="1"><br>
+                No<input name="utilitat_publica" type="radio" value="0"><br>
                 <input type="submit" class="btn btn-success mt-4 col-2" value="Enviar">
             </form>
         </div>
