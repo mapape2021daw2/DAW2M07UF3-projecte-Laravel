@@ -132,7 +132,7 @@ class Soci extends Controller
         $sociNif = (string)$formNif[0]->nif;
 
         if($sociNif === $nif) {
-            DB::update('update soci set nom = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?, 
+            DB::update('update soci set nom = ?, adreca = ?, poblacio = ?, comarca = ?, telefon = ?,
                         mobil = ?, email = ?, data_alta = ?, quota = ?, aport_volunt = ?, aportacio = ?, associacio = ?  where nif = ?',[$nom, $adreca, $poblacio, $comarca, $telefon, $mobil, $email, $data_alta, $quota, $aport_volunt, $aport_anual, $associacio, $nif]);
             return redirect('/mostraSocis');
         }
@@ -153,6 +153,6 @@ class Soci extends Controller
     public function destroy($nif)
     {
         DB::select('delete from soci where nif = ?', [$nif]);
-        return redirect('/esborrarSocis');
+        return redirect('/esborraSocis');
     }
 }

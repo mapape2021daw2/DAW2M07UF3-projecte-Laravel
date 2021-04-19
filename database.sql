@@ -25,6 +25,7 @@ CREATE TABLE soci(
                      email varchar(50) NOT NULL,
                      quota numeric(7,2) NOT NULL,
                      aportacio numeric(7,2) NOT NULL,
+                     aport_volunt numeric(7,2),
                      data_alta date NOT NULL,
                      associacio varchar(9) NOT NULL,
                      CONSTRAINT fk_soci_associacio_nif FOREIGN KEY (associacio) REFERENCES associacio(cif)
